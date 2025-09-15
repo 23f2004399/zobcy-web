@@ -14,5 +14,13 @@ def seeker_login():
 def provider_login():
     return render_template('providerlogin.html')
 
+@app.route('/seekersignup')
+def seeker_signup():
+    return render_template('seekersignup.html')
+
+@app.route('/providersignup')
+def provider_signup():
+    return render_template('providersignup.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
