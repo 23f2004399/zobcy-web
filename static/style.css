@@ -9,3 +9,11 @@ body {
 h1 {
     color: #0056b3;
 }
+.fade-out {
+  opacity: 1;
+  transition: opacity 1s ease-out; /* smooth fade over 1 second */
+}
+
+.fade-out.hidden {
+  opacity: 0;
+}
