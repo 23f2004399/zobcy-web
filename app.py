@@ -22,5 +22,14 @@ def seeker_signup():
 def provider_signup():
     return render_template('providersignup.html')
 
+@app.route('/seekerdash')
+def seeker_dashboard():
+    return render_template('seekerdash.html')
+
+@app.route('/providerdash')
+def provider_dashboard():
+    return render_template('providerdash.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
