@@ -24,6 +24,23 @@ if (params.get("signup") === "success") {
         messageDiv.classList.remove("fade-out", "hidden"); // reset for future messages
     }, 3000);
 }
+
+if (params.get("logout") === "success") {
+    messageDiv.textContent = "Logged out successfully!";
+    messageDiv.style.color = "green";
+
+    messageDiv.classList.add("fade-out");  // enable transition
+
+    setTimeout(() => {
+        messageDiv.classList.add("hidden"); // start fading after 2s
+    }, 2000);
+
+    setTimeout(() => {
+        messageDiv.textContent = "";
+        messageDiv.classList.remove("fade-out", "hidden"); // reset for future messages
+    }, 3000);
+}
+
 // Add a listener to the form for when the user clicks "Login"
 loginForm.addEventListener('submit', (e) => {
     // Prevent the form from submitting the traditional way (which would refresh the page)

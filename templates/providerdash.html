@@ -7,9 +7,38 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
-  <div class="min-h-screen flex flex-col items-center justify-center">
-    <h1 class="text-4xl font-bold text-gray-900 mb-6">Hi <span id="providerName"></span>,</h1>
-    <p class="text-lg text-gray-600">Welcome to your dashboard.</p>
+  <div class="min-h-screen flex flex-col">
+    <header class="flex justify-between items-center p-6">
+      <!-- Left: Name + Pencil -->
+      <div class="flex items-center space-x-2">
+        <h1 class="text-4xl font-bold text-gray-900">Hi <span id="providerName"></span>!</h1>
+        <button id="editName" class="text-gray-600 hover:text-gray-900">
+          <!-- Pencil Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" 
+              class="h-7 w-7" fill="none" 
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" 
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 
+                    002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 
+                    2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+        </button>
+      </div>
+
+      <button id="logoutBtn" class="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+        <!-- Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+            viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 
+                  0 012-2h4a2 2 0 012 2v1" />
+        </svg>
+        <span>Logout</span>
+      </button>
+    </header>
+    <main class="flex justify-center mt-8">
+      <p class="text-lg text-gray-600">Welcome to your dashboard.</p>
+    </main>
   </div>
   <script type="module" src="/static/providerdash.js"></script>
 </body>
