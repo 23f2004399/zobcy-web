@@ -1,6 +1,12 @@
 import { auth, db } from '/static/firebase-init.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-storage.js";
+
+const storage = getStorage();
+const profilePic = document.getElementById("profilePic");
+const profilePicInput = document.getElementById("profilePicInput");
+const uploadPicBtn = document.getElementById("uploadPicBtn");
 
 // Fields
 const nameField = document.getElementById("nameField");
@@ -173,6 +179,15 @@ onAuthStateChanged(auth, async (user) => {
     // Categories
     selectedCategories = data.categories || [];
     renderCategories();
+
+    if (data.profilePicture) {
+      profilePic.src = `${data.profilePicture}?t=${Date.now()}`;
+      profilePic.classList.remove("hidden");
+      document.getElementById("defaultAvatar").classList.add("hidden");
+    } else {
+      profilePic.classList.add("hidden");
+      document.getElementById("defaultAvatar").classList.remove("hidden");
+    }
   }
 });
 
@@ -193,6 +208,40 @@ editPincodeBtn?.addEventListener("click", () => { pincodeField.readOnly = false;
 editWebsiteBtn?.addEventListener("click", () => {
   websiteField.readOnly = false;
   websiteField.focus();
+});
+
+// Open file picker
+uploadPicBtn.addEventListener("click", () => {
+  profilePicInput.click();
+});
+
+profilePicInput.addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (!userRef) {
+    alert("User not loaded yet. Please wait a moment and try again.");
+    return;
+  }
+
+  try {
+    console.log("File selected:", e.target.files[0]);
+    const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}`);
+    await uploadBytes(storageRef, file);
+
+    const downloadURL = await getDownloadURL(storageRef);
+
+    await updateDoc(userRef, { profilePicture: downloadURL });
+
+    profilePic.src = `${downloadURL}?t=${Date.now()}`;
+    profilePic.classList.remove("hidden");
+    document.getElementById("defaultAvatar").classList.add("hidden");
+
+    alert("Profile picture updated successfully!");
+  } catch (err) {
+    console.error("Error uploading profile picture:", err);
+    alert("Failed to update profile picture.");
+  }
 });
 
 // Category input
