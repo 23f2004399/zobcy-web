@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="flex justify-between items-center p-6">
+      <!-- Left: Greeting -->
+      <div class="flex items-center space-x-2">
+        <h1 class="text-4xl font-bold text-gray-900">Hi Admin!</h1>
+      </div>
+
+      <!-- Right: Logout -->
+      <button onclick="window.location.href='/adminlogin'"
+        class="flex items-center space-x-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+        <!-- Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 
+                   01-2 2H7a2 2 0 01-2-2V7a2 2 0 
+                   012-2h4a2 2 0 012 2v1" />
+        </svg>
+        <span>Logout</span>
+      </button>
+    </header>
+
+    <!-- Main -->
+    <main class="flex justify-center mt-8">
+      <p class="text-lg text-gray-600">Welcome to Admin Dashboard.</p>
+    </main>
+  </div>
+</body>
+</html>

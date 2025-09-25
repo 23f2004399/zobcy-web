@@ -46,5 +46,13 @@ def provider_profile(username):
 def provider_profile_view(username):
     return render_template('providerprofileview.html', username=username)
 
+@app.route('/adminlogin')
+def admin_login():
+    return render_template('adminlogin.html')
+
+@app.route('/admindash')
+def admin_dash():
+    return render_template('admindash.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
