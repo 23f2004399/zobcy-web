@@ -17,3 +17,6 @@ h1 {
 .fade-out.hidden {
   opacity: 0;
 }
+input.border-red-500 {
+  border-color: #ef4444 !important; /* Tailwind red-500 */
+}
