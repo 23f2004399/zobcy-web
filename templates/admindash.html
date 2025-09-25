@@ -31,8 +31,20 @@
     </header>
 
     <!-- Main -->
-    <main class="flex justify-center mt-8">
+    <main class="flex flex-col items-center mt-8 space-y-8">
       <p class="text-lg text-gray-600">Welcome to Admin Dashboard.</p>
+
+      <!-- Buttons Row -->
+      <div class="flex space-x-6">
+        <button onclick="window.location.href='/admin/providers'"
+            class="w-40 h-20 bg-blue-600 text-white text-xl font-semibold rounded-xl shadow-lg hover:bg-blue-700 transition">
+            Providers
+        </button>
+        <button onclick="window.location.href='/admin/seekers'"
+            class="w-40 h-20 bg-green-600 text-white text-xl font-semibold rounded-xl shadow-lg hover:bg-green-700 transition">
+          Seekers
+        </button>
+      </div>
     </main>
   </div>
 </body>

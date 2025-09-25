@@ -54,5 +54,13 @@ def admin_login():
 def admin_dash():
     return render_template('admindash.html')
 
+@app.route('/admin/providers')
+def admin_providers():
+    return render_template('adminprovider.html')
+
+@app.route('/admin/seekers')
+def admin_seekers():
+    return render_template('adminseeker.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

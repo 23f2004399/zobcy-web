@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Seekers</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="min-h-screen p-6">
+
+    <!-- Header with Back Button -->
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold text-gray-800">All Seekers</h1>
+      <button onclick="window.location.href='/admindash'"
+        class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">
+        ← Back
+      </button>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg">
+        <thead>
+          <tr class="bg-gray-100 text-gray-700 text-left">
+            <th class="py-3 px-4 border-b">Sr. No.</th>
+            <th class="py-3 px-4 border-b">Profile Picture</th>
+            <th class="py-3 px-4 border-b">Name</th>
+            <th class="py-3 px-4 border-b">Username</th>
+            <th class="py-3 px-4 border-b">Phone Number</th>
+            <th class="py-3 px-4 border-b">Email Address</th>
+            <th class="py-3 px-4 border-b">More</th>
+          </tr>
+        </thead>
+        <tbody id="seekersTable" class="text-gray-600">
+          <!-- Data will be injected here by adminseeker.js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="seekerModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-lg w-96 max-h-[80vh] overflow-y-auto relative p-6">
+      <!-- Close button -->
+      <button id="closeSeekerModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+      <h2 class="text-2xl font-semibold mb-4">Seeker Details</h2>
+      <div id="seekerDetails" class="space-y-2 text-gray-700"></div>
+    </div>
+  </div>
+
+  <!-- Firebase Init -->
+  <script type="module" src="{{ url_for('static', filename='firebase-init.js') }}"></script>
+  <!-- Page Logic -->
+  <script type="module" src="{{ url_for('static', filename='adminseeker.js') }}"></script>
+</body>
+</html>
