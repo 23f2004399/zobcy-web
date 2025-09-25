@@ -39,6 +39,11 @@ const editCityBtn = document.getElementById("editCityBtn");
 const editStateBtn = document.getElementById("editStateBtn");
 const editPincodeBtn = document.getElementById("editPincodeBtn");
 
+const resumeInput = document.getElementById("resumeInput");
+const uploadResumeBtn = document.getElementById("uploadResumeBtn");
+const viewResumeBtn = document.getElementById("viewResumeBtn");
+const resumeStatus = document.getElementById("resumeStatus");
+
 const defaultSkills = [
   "Cooking", "Driving", "Plumbing", "Carpentry", "Gardening", 
   "Cleaning", "Electrician", "Babysitting", "Teaching", "Painting", "Programming"
@@ -253,6 +258,19 @@ onAuthStateChanged(auth, async (user) => {
       document.getElementById("defaultAvatar").classList.remove("hidden");
     }
 
+    if (data.resume) {
+      resumeStatus.textContent = "Resume uploaded";
+      viewResumeBtn.disabled = false;
+      viewResumeBtn.classList.remove("bg-gray-400", "cursor-not-allowed");
+      viewResumeBtn.classList.add("bg-green-600", "hover:bg-green-700");
+      viewResumeBtn.onclick = () => window.open(data.resume, "_blank");
+    } else {
+      resumeStatus.textContent = "No resume uploaded";
+      viewResumeBtn.disabled = true;
+      viewResumeBtn.classList.remove("bg-green-600", "hover:bg-green-700");
+      viewResumeBtn.classList.add("bg-gray-400", "cursor-not-allowed");
+    }
+
   }
 });
 
@@ -306,6 +324,45 @@ profilePicInput.addEventListener("change", async (e) => {
   }
 });
 
+// Resume upload
+uploadResumeBtn.addEventListener("click", () => {
+  resumeInput.click();
+});
+
+resumeInput.addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (file.type !== "application/pdf") {
+    alert("Please upload a PDF file only.");
+    return;
+  }
+
+  if (!userRef) {
+    alert("User not loaded yet. Please wait a moment and try again.");
+    return;
+  }
+
+  try {
+    const storageRef = ref(storage, `resumes/${auth.currentUser.uid}.pdf`);
+    await uploadBytes(storageRef, file);
+
+    const downloadURL = await getDownloadURL(storageRef);
+
+    await updateDoc(userRef, { resume: downloadURL });
+
+    resumeStatus.textContent = "Resume uploaded";
+    viewResumeBtn.disabled = false;
+    viewResumeBtn.classList.remove("bg-gray-400", "cursor-not-allowed");
+    viewResumeBtn.classList.add("bg-green-600", "hover:bg-green-700");
+    viewResumeBtn.onclick = () => window.open(downloadURL, "_blank");
+
+    alert("Resume uploaded successfully!");
+  } catch (err) {
+    console.error("Error uploading resume:", err);
+    alert("Failed to upload resume.");
+  }
+});
 
 // Skills input + dropdown
 const skillInput = document.getElementById("skillInput");

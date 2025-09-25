@@ -437,7 +437,28 @@
         <div id="hobbiesDropdown" class="mt-2 border border-gray-300 rounded-md bg-white shadow-md hidden max-h-40 overflow-y-auto"></div>
         </section>
 
+        <!-- Section: Resume Upload -->
+        <section id="resumeSection" class="mt-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Resume Upload</h2>
 
+        <div class="flex items-center justify-between border border-gray-300 rounded-md px-4 py-3 bg-white shadow-sm">
+            <div>
+            <p id="resumeStatus" class="text-gray-600">No resume uploaded</p>
+            </div>
+
+            <div class="flex space-x-3">
+            <input type="file" id="resumeInput" accept="application/pdf" class="hidden">
+            <button id="uploadResumeBtn"
+                class="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition">
+                Upload
+            </button>
+            <button id="viewResumeBtn" disabled
+                class="px-4 py-2 bg-gray-400 text-white rounded-md shadow cursor-not-allowed">
+                View
+            </button>
+            </div>
+        </div>
+        </section>
 
     </main>
 
