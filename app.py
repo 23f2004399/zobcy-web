@@ -42,5 +42,9 @@ def seeker_profile_view(username):
 def provider_profile(username):
     return render_template('providerprofile.html', username=username)
 
+@app.route('/provider/<username>/profileview')
+def provider_profile_view(username):
+    return render_template('providerprofileview.html', username=username)
+
 if __name__ == '__main__':
     app.run(debug=True)
