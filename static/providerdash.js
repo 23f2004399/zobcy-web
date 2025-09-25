@@ -4,6 +4,7 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-
 import { signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 
 const providerNameSpan = document.getElementById("providerName");
+const editNameBtn = document.getElementById("editName");
 const logoutBtn = document.getElementById("logoutBtn");
 
 onAuthStateChanged(auth, async (user) => {
@@ -12,6 +13,13 @@ onAuthStateChanged(auth, async (user) => {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       providerNameSpan.textContent = docSnap.data().name;
+
+      const username = docSnap.data().username;
+      if (editNameBtn) {
+        editNameBtn.addEventListener("click", () => {
+          editNameBtn.href = `/provider/${encodeURIComponent(username)}/profile`;
+        });
+      }
     } else {
       providerNameSpan.textContent = "Provider";
     }

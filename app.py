@@ -30,10 +30,13 @@ def seeker_dashboard():
 def provider_dashboard():
     return render_template('providerdash.html')
 
-@app.route('/<username>/profile')
+@app.route('/seeker/<username>/profile')
 def seeker_profile(username):
     return render_template('seekerprofile.html', username=username)
 
+@app.route('/provider/<username>/profile')
+def provider_profile(username):
+    return render_template('providerprofile.html', username=username)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -16,7 +16,7 @@ onAuthStateChanged(auth, async (user) => {
       seekerNameSpan.textContent = docSnap.data().name;
 
       const username = docSnap.data().username;
-      editProfileLink.href = `/${username}/profile`;
+      editProfileLink.href = `seeker/${username}/profile`;
     } else {
       seekerNameSpan.textContent = "Seeker";
     }
