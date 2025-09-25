@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Back button -->
+  <div class="absolute top-4 left-6">
+    <a href="/seekerdash"
+      class="px-4 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition">
+      Back to Dashboard
+    </a>
+  </div>
+
+  <!-- Profile Header -->
+  <header class="pt-12 text-center">
+    <h1 class="text-4xl font-bold text-gray-900">Public Profile</h1>
+    <p class="mt-2 text-gray-600">A view-only profile page</p>
+  </header>
+
+  <!-- Profile Container -->
+  <main class="mt-10 mx-auto max-w-4xl bg-white shadow-lg rounded-lg p-8">
+    <!-- Profile Picture -->
+    <div class="flex flex-col items-center mb-8">
+      <div class="w-40 h-40 rounded-full bg-gray-200 overflow-hidden shadow-md">
+        <img id="profilePic" src="" alt="Profile Picture" class="w-full h-full object-cover hidden">
+      </div>
+      <p id="defaultAvatar" class="mt-3 text-gray-500">No Image</p>
+    </div>
+
+    <!-- Personal Info -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-6">Personal Information</h2>
+      <div class="grid grid-cols-2 gap-6 text-gray-700">
+        <p><span class="font-medium">Name:</span> <span id="nameField"></span></p>
+        <p><span class="font-medium">Username:</span> <span id="usernameField"></span></p>
+        <p><span class="font-medium">Email:</span> <span id="primaryEmailField"></span></p>
+        <p><span class="font-medium">Secondary Email:</span> <span id="secondaryEmailField"></span></p>
+        <p><span class="font-medium">DOB:</span> <span id="dobField"></span></p>
+        <p><span class="font-medium">Gender:</span> <span id="genderField"></span></p>
+      </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-6">Contact</h2>
+      <div class="grid grid-cols-2 gap-6 text-gray-700">
+        <p><span class="font-medium">Primary Phone:</span> <span id="primaryPhoneField"></span></p>
+        <p><span class="font-medium">Secondary Phone:</span> <span id="secondaryPhoneField"></span></p>
+        <p class="col-span-2"><span class="font-medium">Address:</span> <span id="addressField"></span></p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-6">Skills</h2>
+      <div id="skillsContainer" class="flex flex-wrap gap-2 text-gray-700"></div>
+    </section>
+
+    <!-- Hobbies -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-6">Hobbies</h2>
+      <div id="hobbiesContainer" class="flex flex-wrap gap-2 text-gray-700"></div>
+    </section>
+
+    <!-- Resume -->
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-800 border-b pb-2 mb-6">Resume</h2>
+      <p id="resumeStatus" class="text-gray-600">No resume uploaded</p>
+      <button id="viewResumeBtn" disabled
+        class="mt-4 px-4 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed">
+        View Resume
+      </button>
+    </section>
+  </main>
+
+  <script type="module">
+    import { auth, db } from '/static/firebase-init.js';
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "/seekerlogin";
+        return;
+      }
+      const userRef = doc(db, "seekers", user.uid);
+      const snap = await getDoc(userRef);
+
+      if (snap.exists()) {
+        const data = snap.data();
+
+        // Fill text fields
+        document.getElementById("nameField").textContent = data.name || "";
+        document.getElementById("usernameField").textContent = data.username || "";
+        document.getElementById("primaryEmailField").textContent = data.email || "";
+        document.getElementById("secondaryEmailField").textContent = data.secondaryEmail || "";
+        document.getElementById("dobField").textContent = data.dob || "";
+        document.getElementById("genderField").textContent = data.gender || "";
+
+        document.getElementById("primaryPhoneField").textContent = data.primaryPhone || "";
+        document.getElementById("secondaryPhoneField").textContent = data.secondaryPhone || "";
+        document.getElementById("addressField").textContent =
+          [data.house, data.street, data.city, data.state, data.pincode].filter(Boolean).join(", ");
+
+        // Skills
+        const skillsContainer = document.getElementById("skillsContainer");
+        (data.skills || []).forEach(skill => {
+          const chip = document.createElement("span");
+          chip.className = "px-3 py-1 bg-green-100 text-green-700 rounded-full";
+          chip.textContent = skill;
+          skillsContainer.appendChild(chip);
+        });
+
+        // Hobbies
+        const hobbiesContainer = document.getElementById("hobbiesContainer");
+        (data.hobbies || []).forEach(hobby => {
+          const chip = document.createElement("span");
+          chip.className = "px-3 py-1 bg-blue-100 text-blue-700 rounded-full";
+          chip.textContent = hobby;
+          hobbiesContainer.appendChild(chip);
+        });
+
+        // Profile Picture
+        if (data.profilePicture) {
+          const profilePic = document.getElementById("profilePic");
+          profilePic.src = `${data.profilePicture}?t=${Date.now()}`;
+          profilePic.classList.remove("hidden");
+          document.getElementById("defaultAvatar").classList.add("hidden");
+        }
+
+        // Resume
+        if (data.resume) {
+          const viewBtn = document.getElementById("viewResumeBtn");
+          viewBtn.disabled = false;
+          viewBtn.classList.remove("bg-gray-400", "cursor-not-allowed");
+          viewBtn.classList.add("bg-green-600", "hover:bg-green-700");
+          viewBtn.onclick = () => window.open(data.resume, "_blank");
+          document.getElementById("resumeStatus").textContent = "Resume available";
+        }
+      }
+    });
+  </script>
+</body>
+</html>

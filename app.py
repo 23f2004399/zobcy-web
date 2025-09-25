@@ -34,6 +34,10 @@ def provider_dashboard():
 def seeker_profile(username):
     return render_template('seekerprofile.html', username=username)
 
+@app.route('/seeker/<username>/profileview')
+def seeker_profile_view(username):
+    return render_template('seekerprofileview.html', username=username)
+
 @app.route('/provider/<username>/profile')
 def provider_profile(username):
     return render_template('providerprofile.html', username=username)
