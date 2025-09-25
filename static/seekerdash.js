@@ -5,6 +5,8 @@ import { signOut } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth
 
 const seekerNameSpan = document.getElementById("seekerName");
 const logoutBtn = document.getElementById("logoutBtn");
+const editProfileLink = document.getElementById("editProfileLink");
+
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -12,6 +14,9 @@ onAuthStateChanged(auth, async (user) => {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       seekerNameSpan.textContent = docSnap.data().name;
+
+      const username = docSnap.data().username;
+      editProfileLink.href = `/${username}/profile`;
     } else {
       seekerNameSpan.textContent = "Seeker";
     }

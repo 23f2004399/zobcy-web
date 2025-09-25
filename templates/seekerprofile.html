@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seeker Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center">
+  <header class="mt-12 text-center">
+    <h1 class="text-4xl font-bold text-gray-900 text-center">Profile</h1>
+  </header>
+
+    <main class="mt-10 w-full max-w-4xl px-6">
+        <!-- Section: Primary Details -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Primary Details</h2>
+
+            <div class="grid grid-cols-2 gap-8">
+            <!-- Left Column -->
+            <div class="space-y-6">
+                <!-- Full Name -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <div class="flex items-center border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="nameField" type="text" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="nameError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="editNameBtn" class="ml-2 text-blue-600 hover:text-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 
+                                    002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 
+                                    2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                    </button>
+
+                </div>
+                </div>
+
+                <!-- Primary Email -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Primary Email</label>
+                <div class="flex items-center border border-gray-300 rounded-md px-3 py-2 bg-gray-100">
+                    <div class="flex flex-col w-full">
+                        <input id="primaryEmailField" type="text" 
+                        class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly>
+                    </div>
+                </div>
+                </div>
+
+                <!-- DOB -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">DOB</label>
+                <div class="flex items-center border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="dobField" type="text" placeholder="dd-mm-yyyy" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="dobError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="dobPickerBtn" class="ml-2 text-gray-600 hover:text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 
+                                    002-2V7a2 2 0 00-2-2H5a2 2 
+                                    0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </button>
+
+                </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-6">
+                <!-- Username -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                <div class="flex items-center border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="usernameField" type="text" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="usernameError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="editUsernameBtn" class="ml-2 text-blue-600 hover:text-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 
+                                    002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 
+                                    2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                    </button>
+
+                </div>
+                </div>
+
+                <!-- Secondary Email -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Secondary Email</label>
+                    <div class="flex items-center border border-gray-300 rounded-md px-3 py-2">
+                        <div class="flex flex-col w-full">
+                            <input id="secondaryEmailField" type="text" 
+                            class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly>
+                        </div>
+                        <button id="editSecondaryEmailBtn" 
+                                class="ml-2 text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 
+                                    002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 
+                                    2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Gender -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                <div class="flex flex-col w-full">
+                    <select id="genderField" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white" required>
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                    </select>
+                    <p id="genderError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Section: Contact Details -->
+        <section id="contactDetails" class="mt-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Contact Details</h2>
+
+        <div class="grid grid-cols-2 gap-8">
+            <!-- Left Column: Primary Phone -->
+            <div class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Primary Phone No.</label>
+                <div class="flex items-center border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="primaryPhoneField" type="text" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="primaryPhoneError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                <button id="editPrimaryPhoneBtn" class="ml-2 text-blue-600 hover:text-blue-800">
+                    <!-- Pencil Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                        viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 
+                            0 002 2h11a2 2 0 002-2v-5M18.5 
+                            2.5a2.121 2.121 0 013 3L12 15l-4 
+                            1 1-4 9.5-9.5z" />
+                    </svg>
+                </button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Right Column: Secondary Phone -->
+            <div class="space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Secondary Phone No.</label>
+                <div class="flex items-center border border-gray-300 rounded-md px-3 py-2">
+                <div class="flex flex-col w-full">
+                    <input id="secondaryPhoneField" type="text" 
+                    class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly>
+                </div>
+                <button id="editSecondaryPhoneBtn" 
+                        class="ml-2 text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed" >
+                    <!-- Pencil Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" 
+                        viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 
+                            0 002 2h11a2 2 0 002-2v-5M18.5 
+                            2.5a2.121 2.121 0 013 3L12 15l-4 
+                            1 1-4 9.5-9.5z" />
+                    </svg>
+                </button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Address Section -->
+            <div class="mt-4 col-span-2">
+            <h3 class="text-xl font-semibold text-gray-700 mb-4">Address</h3>
+
+            <!-- Row 1: House / Flat, Street, City -->
+            <div class="grid grid-cols-3 gap-8 mb-6 w-full">
+                <!-- House / Flat -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">House / Flat No.</label>
+                <div class="flex items-center w-full border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="houseField" type="text" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="houseError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="editHouseBtn"
+                            class="ml-2 shrink-0 text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 
+                                0 002 2h11a2 2 0 002-2v-5M18.5 
+                                2.5a2.121 2.121 0 013 3L12 15l-4 
+                                1 1-4 9.5-9.5z"/>
+                    </svg>
+                    </button>
+                </div>
+                </div>
+
+                <!-- Street -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Street</label>
+                <div class="flex items-center w-full border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="streetField" type="text" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="streetError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="editStreetBtn"
+                            class="ml-2 shrink-0 text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 
+                                0 002 2h11a2 2 0 002-2v-5M18.5 
+                                2.5a2.121 2.121 0 013 3L12 15l-4 
+                                1 1-4 9.5-9.5z"/>
+                    </svg>
+                    </button>
+                </div>
+                </div>
+
+                <!-- Village / City -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Village / City</label>
+                <div class="flex items-center w-full border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="cityField" type="text" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="cityError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="editCityBtn"
+                            class="ml-2 shrink-0 text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 
+                                0 002 2h11a2 2 0 002-2v-5M18.5 
+                                2.5a2.121 2.121 0 013 3L12 15l-4 
+                                1 1-4 9.5-9.5z"/>
+                    </svg>
+                    </button>
+                </div>
+                </div>
+            </div>
+
+            <!-- Row 2: State, Pincode -->
+            <div class="grid grid-cols-2 gap-8 w-full">
+                <!-- State -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">State</label>
+                <div class="flex items-center w-full border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <select id="stateField" class="flex-grow w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none disabled:bg-gray-100" disabled required>
+                        <option value="">Select</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                        </select>
+                        <p id="stateError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="editStateBtn"
+                            class="ml-2 shrink-0 text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 
+                                0 002 2h11a2 2 0 002-2v-5M18.5 
+                                2.5a2.121 2.121 0 013 3L12 15l-4 
+                                1 1-4 9.5-9.5z"/>
+                    </svg>
+                    </button>
+                </div>
+                </div>
+
+                <!-- Pincode -->
+                <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Pincode</label>
+                <div class="flex items-center w-full border border-gray-300 rounded-md px-3 py-2">
+                    <div class="flex flex-col w-full">
+                        <input id="pincodeField" type="text" class="flex-grow focus:outline-none w-full border border-gray-300 rounded-md px-3 py-2" readonly required>
+                        <p id="pincodeError" class="text-red-500 text-sm mt-1 hidden">Required field!</p>
+                    </div>
+                    <button id="editPincodeBtn"
+                            class="ml-2 shrink-0 text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 
+                                2.5a2.121 2.121 0 013 3L12 15l-4 
+                                1 1-4 9.5-9.5z"/>
+                    </svg>
+                    </button>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+        </section>
+
+        <!-- Section: Skills -->
+        <section id="skillsSection" class="mt-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Skills</h2>
+
+            <!-- My Skills display -->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">My Skills:</label>
+                <div id="mySkillsContainer" class="flex flex-wrap gap-2">
+                <!-- Selected skills will appear here as removable chips -->
+                </div>
+                <p id="skillsError" class="text-red-500 text-sm mt-2 hidden">"My Skills:" is a required field.</p>
+            </div>
+
+            <!-- Skill selection -->
+            <div class="flex items-center space-x-2">
+            <input 
+                type="text" 
+                id="skillInput" 
+                placeholder="Select or type a skill" 
+                class="flex-grow border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button 
+                id="addSkillBtn" 
+                type="button"
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+            >
+                Add
+            </button>
+            </div>
+
+            <!-- Dropdown for suggestions -->
+            <div id="skillsDropdown" class="mt-2 border border-gray-300 rounded-md bg-white shadow-md hidden max-h-40 overflow-y-auto"></div>
+
+        </section>
+
+        <!-- Section: Hobbies -->
+        <section id="hobbiesSection" class="mt-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Hobbies</h2>
+
+        <!-- My Hobbies display -->
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">My Hobbies:</label>
+            <div id="myHobbiesContainer" class="flex flex-wrap gap-2"></div>
+            <p id="hobbiesError" class="text-red-500 text-sm mt-2 hidden">"My Hobbies:" is a required field.</p>
+        </div>
+
+        <!-- Hobby selection -->
+        <div class="flex items-center space-x-2">
+            <input 
+            type="text" 
+            id="hobbyInput" 
+            placeholder="Select or type a hobby" 
+            class="flex-grow border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button 
+            id="addHobbyBtn" 
+            type="button"
+            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+            >
+            Add
+            </button>
+        </div>
+
+        <!-- Dropdown for suggestions -->
+        <div id="hobbiesDropdown" class="mt-2 border border-gray-300 rounded-md bg-white shadow-md hidden max-h-40 overflow-y-auto"></div>
+        </section>
+
+
+
+    </main>
+
+    <div class="mt-12 flex justify-center">
+    <button id="saveBtn" 
+            class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow hover:bg-blue-700 transition">
+        Save Changes
+    </button>
+    </div>
+
+
+  <script type="module" src="/static/seekerprofile.js"></script>
+</body>
+</html>
